@@ -1,6 +1,10 @@
-FROM alpine:latest
+FROM debian:stable-slim
 LABEL maintainer="James Eckersall <james.eckersall@gmail.com>"
-RUN apk add --update --no-cache tftp-hpa
+RUN \
+  apt update && \
+  apt install -y atftpd && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 EXPOSE 69/udp
-ENTRYPOINT ["in.tftpd"]
-CMD ["-L", "--secure", "-v", "/var/tftpboot"]
+ENTRYPOINT ["/usr/sbin/atftpd"]
+CMD ["--user", "nobody.nogroup", "--daemon", "--no-fork", "--port", "69", "--logfile", "/dev/stdout", "/var/tftpboot"]
