@@ -2,7 +2,7 @@ FROM debian:stable-slim
 LABEL maintainer="James Eckersall <james.eckersall@gmail.com>"
 RUN \
   apt update && \
-  apt install -y atftpd && \
+  apt install -y atftpd procps && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 EXPOSE 69/udp
