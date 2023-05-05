@@ -7,4 +7,4 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 EXPOSE 69/udp
 ENTRYPOINT ["/usr/sbin/atftpd"]
-CMD ["--user", "nobody.nogroup", "--daemon", "--no-fork", "--port", "69", "--logfile", "/dev/stdout", "/var/tftpboot"]
+CMD ["--user", "nobody.nogroup", "--daemon", "--no-fork", "--port", "69", "--logfile", "/dev/stdout", "-v", "9", "/var/tftpboot"]
